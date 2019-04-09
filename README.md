@@ -56,30 +56,22 @@ For this project, I had to learn principle of Particle-Filter
 
 - Assumption for bicycle model
 
-![alt text][image1-1]
+<img src="./images/motion_models.jpg" width="500">
 
 
 
 ### 2. Particle Filters
 
-<img src="./images/kalman_filter_1.jpg" width="500">
-<img src="./images/kalman_filter_2.jpg" width="500">
-<img src="./images/kalman_filter_3.jpg" width="500">
-<img src="./images/kalman_filter_4.jpg" width="500">
-<img src="./images/kalman_filter_5.jpg" width="500">
+<img src="./images/particle_filter_1.jpg" width="500">
+<img src="./images/particle_filter_2.jpg" width="500">
 
 
 ### 3. Implementation of a Particle Filter
 
-<img src="./images/extended_kalman_filter_1.jpg" width="500">
-<img src="./images/extended_kalman_filter_2.jpg" width="500">
-<img src="./images/extended_kalman_filter_3.jpg" width="500">
-<img src="./images/extended_kalman_filter_4.jpg" width="500">
-<img src="./images/extended_kalman_filter_5.jpg" width="500">
-<img src="./images/extended_kalman_filter_6.jpg" width="500">
-<img src="./images/extended_kalman_filter_7.jpg" width="500">
-<img src="./images/extended_kalman_filter_8.jpg" width="500">
-<img src="./images/extended_kalman_filter_9.jpg" width="500">
+<img src="./images/implementation_of_a_particle_filter_1.jpg" width="500">
+<img src="./images/implementation_of_a_particle_filter_2.jpg" width="500">
+<img src="./images/implementation_of_a_particle_filter_3.jpg" width="500">
+<img src="./images/implementation_of_a_particle_filter_4.jpg" width="500">
 
 
 
@@ -97,148 +89,6 @@ For this project, I had to learn principle of Particle-Filter
 # Summary Of Each File
 1. FusionEKF.h
 
-```c++
-class FusionEKF {
- public:
-  
-  // Constructor
-  FusionEKF();
-
-  // Destructor. 
-  virtual ~FusionEKF();
-  
-  // It is main function that perform predict next position and calculate position by inputing sensor data
-  // Firstly, if it has first data input, we have to initialize data by using ekf_.init() function
-  // Secondly, predict next x,P by using only dt, Q noise
-  // Finally, calculate current position by using sensor data
-  void ProcessMeasurement(const MeasurementPackage &measurement_pack);
-
-  // We need KalmanFilter object for ProcessMeasurement
-  KalmanFilter ekf_;
-
- private:
- 
-  // check whether the tracking toolbox was initialized or not (first measurement)
-  bool is_initialized_;
-
-  // previous timestamp
-  long long previous_timestamp_;
-
-  // tool object used to compute Jacobian and RMSE
-  Tools tools;
-  Eigen::MatrixXd R_laser_;
-  Eigen::MatrixXd R_radar_;
-  Eigen::MatrixXd H_laser_;
-  Eigen::MatrixXd Hj_;
-
-  // noise constant
-  double noise_ax;
-  double noise_ay;
-
-};
-```
-
-2. kalman-filter.h
-
-```c++
-class KalmanFilter {
- 
- // Need Tools object to calculate RMSE
- Tools tools;
-  
- public:
-
-  // Constructor
-  KalmanFilter();
-
-  // Destructor
-  virtual ~KalmanFilter();
-
-  // Initializes Kalman filter (x, P, F, H, Hj, R, R_ekf, Q, I)
-  void Init(Eigen::VectorXd &x_in, Eigen::MatrixXd &P_in, Eigen::MatrixXd &F_in,
-            Eigen::MatrixXd &H_in, Eigen::MatrixXd &Hj_in, Eigen::MatrixXd &R_in, Eigen::MatrixXd &R_ekf_in, Eigen::MatrixXd &Q_in);
-
-  // Predict position,velocity by using only F matrix (dt)
-  void Predict();
-
-  // Calculate position, velocity by using Laser measurement data
-  void Update(const Eigen::VectorXd &z);
-
-  // Calculate position, velocity by using Radar measurement data
-  void UpdateEKF(const Eigen::VectorXd &z);
-
-  // state vector
-  Eigen::VectorXd x_;
-
-  // state covariance matrix
-  Eigen::MatrixXd P_;
-
-  // state transition matrix
-  Eigen::MatrixXd F_;
-
-  // process covariance matrix
-  Eigen::MatrixXd Q_;
-
-  // measurement matrix
-  Eigen::MatrixXd H_;
-  
-  // measurement matrix for Jacobian
-  Eigen::MatrixXd Hj_;
-
-  // measurement covariance matrix
-  Eigen::MatrixXd R_;
-  
-  // measurement covariance matrix for RADAR
-  Eigen::MatrixXd R_ekf_;
-  
-  // identity matrix
-  Eigen::MatrixXd I_;
-  
-};
-```
-
-3. measurement_package.h
-
-```c++
-class MeasurementPackage {
- public:
- 
-  // Select sensor type LASER/RADAR
-  enum SensorType{
-    LASER,
-    RADAR
-  } sensor_type_;
-
-  // For calculating dt
-  long long timestamp_;
-
-  // It include px,py for LASER, rho, theta, rho_dot for RADAR
-  Eigen::VectorXd raw_measurements_;
-  
-};
-```
-
-4. tools.h
-
-```c++
-class Tools {
- public:
-
-  // Constructor
-  Tools();
-
-  // Destructor
-  virtual ~Tools();
-
-  // Calculating RMSE
-  Eigen::VectorXd CalculateRMSE(const std::vector<Eigen::VectorXd> &estimations, 
-                                const std::vector<Eigen::VectorXd> &ground_truth);
-
-  // Calculating Jacobian
-  Eigen::MatrixXd CalculateJacobian(const Eigen::VectorXd& x_state);
-
-};
-```
 
 # Results
 
