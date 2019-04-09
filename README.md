@@ -92,23 +92,7 @@ For this project, I had to learn principle of Particle-Filter
 
 # Results
 
-I have done one simulation and got this result
-
-px,py means position of x,y
-
-vx, vy means calculated velocity of x,y
-
-![alt text][image5-1]
-
-
-*Test One*
-
-| Input |   MSE   |
-| ----- | ------- |
-|  px   | 0.1164 |
-|  py   | 0.2811 |
-|  vx   | 0.4542 |
-|  vy   | 0.7827 |
+<img src="./images/result.png" width="700">
 
 
 # Conclusion & Discussion
