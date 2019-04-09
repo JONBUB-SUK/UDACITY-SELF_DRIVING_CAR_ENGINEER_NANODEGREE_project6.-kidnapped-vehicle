@@ -30,40 +30,37 @@
 
 # Introduction
 
-The object of this project is to detect bicycle around me (supposing I am driving) by implementing Extended Kalman Filter with C++ 
+The object of this project is to localize car's position
 
-Red circle is sensor data from Lidar,
+Before project (Kalman filter) is to detect object's using sensor fusion, and this project is detect my position exactly
 
-Blue circle is sensor data from Radar,
+by also using sensor fusion
 
-Green triangle is result of calculation that predict its position & direction
+Of coulse it is possible localize my position by using GPS, but its range accuracy is more than 1m
 
-Object of this project is predict bicycle's position by using Extended Kalman Filter
+We need at least 10cm accuracy so we need more than just GPS
 
-and its RMSE should be under [.11, .11, 0.52, 0.52]
+In this project, I will use GPS for initializing first car's position
 
-*RMSE : Root Mean Squared Error*
+after than use sensor fusion for detecting landmarks that already know its position
 
-- Udacity provided simulator and sensor measurement data
+and finally find car's exact position by using particle filter
 
-- It generated noise Lidar, Radar sersor measurements of the position and velocity of object
 
-- For predict its position I had to fusion two sensors
 
 # Background Learning
-For this project, I had to learn principle of Kalman-Filter
 
-### 1. Sensors
+For this project, I had to learn principle of Particle-Filter
 
-- Radar, Lidar strengths and weaknesses
+### 1. Motion models
+
+- Assumption for bicycle model
 
 ![alt text][image1-1]
 
 
 
-### 2. Kalman Filter
-
-- Iteration of predict and measurement update
+### 2. Particle Filters
 
 <img src="./images/kalman_filter_1.jpg" width="500">
 <img src="./images/kalman_filter_2.jpg" width="500">
@@ -72,9 +69,7 @@ For this project, I had to learn principle of Kalman-Filter
 <img src="./images/kalman_filter_5.jpg" width="500">
 
 
-### 3. Extended Kalman Filter
-
-- Sensor Fusion (predict and update using both radar and raser sensors)
+### 3. Implementation of a Particle Filter
 
 <img src="./images/extended_kalman_filter_1.jpg" width="500">
 <img src="./images/extended_kalman_filter_2.jpg" width="500">
@@ -90,16 +85,13 @@ For this project, I had to learn principle of Kalman-Filter
 
 # Content Of This Repo
 - ```src``` a directory with the project code
-	- ```main.cpp``` : reads in data, calls a function to run the Kalman filter, calls a function to calculate RMSE
-    - ```FusionEKF.cpp``` : initializes the filter, calls the predict function, calls the update function
-    - ```kalman_filter.cpp``` : defines the predict function, the update function for lidar, and the update function for radar
-    - ```tools.cpp``` : a function to calculate RMSE and the Jacobian matrix
-- ```data``` a directory with two input files, provided by Udacity
+	- ```main.cpp``` : reads in data, calls a function to run the Particle filter, calls a function to calculate Error
+    - ```ParticleFilter.cpp``` : describes particle filter functions
+    - ```ParticleFilter.h``` : header file for .cpp
+    - ```map.h``` : information about landmark position
+    - ```json.hpp``` : for using json in main.cpp
+    - ```helper_functions.h``` : functions used to in ParticleFilter.cpp
 
-
-# Code Flow
-
-![alt text][image4-1]
 
 
 # Summary Of Each File
@@ -271,11 +263,26 @@ vx, vy means calculated velocity of x,y
 
 # Conclusion & Discussion
 
-### 1. Test only using one sensor
+### 1. About total flow of self-driving car
 
-I will test using only one sensor (Lidar or Radar)
+What do we need to make self driving car?
 
-Wonder how that result is diffrent from using both sensors
+Firstly, we may need detect surroundings like we see when driving
+
+For that, I learned computer vision, deep learning, sensor fusion at before projects
+
+Secondly, we need to know where am I exactly, in the range of 10cm
+
+This project is at exactly this point
+
+This, particle filter is for localization of my exact position
+
+Thirdly, we need to decide how to react like go straight, turn left, change lanes ...
+
+Next project will cover this subjects
+
+
+
 
 
 
