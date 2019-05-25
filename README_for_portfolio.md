@@ -26,10 +26,9 @@ and finally find car's exact position by using particle filter
 
 #### 1) Motion models
 
-- Assumption for bicycle model
+① Assumption for bicycle model
 
-<img src="./images/motion_models.jpg" width="500">
-
+② (x,y,math.theta) 
 
 
 #### 2) Particle Filters
