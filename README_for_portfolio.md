@@ -21,11 +21,10 @@ and finally find car's exact position by using particle filter
 
 
 
-# Background Learning
+## 2. Related Study
 
-For this project, I had to learn principle of Particle-Filter
 
-### 1. Motion models
+#### 1) Motion models
 
 - Assumption for bicycle model
 
@@ -33,24 +32,24 @@ For this project, I had to learn principle of Particle-Filter
 
 
 
-### 2. Particle Filters
+#### 2) Particle Filters
 
 <img src="./images/particle_filter_1.jpg" width="500">
 <img src="./images/particle_filter_2.jpg" width="500">
 
 
-### 3. Implementation of a Particle Filter
+#### 3) Implementation of a Particle Filter
 
 <img src="./images/implementation_of_a_particle_filter_1.jpg" width="500">
 <img src="./images/implementation_of_a_particle_filter_2.jpg" width="500">
 <img src="./images/implementation_of_a_particle_filter_3.jpg" width="500">
 <img src="./images/implementation_of_a_particle_filter_4.jpg" width="500">
 
-
+## 3. Details
 
 # Content Of This Repo
 - ```src``` a directory with the project code
-	- ```main.cpp``` : reads in data, calls a function to run the Particle filter, calls a function to calculate Error
+    - ```main.cpp``` : reads in data, calls a function to run the Particle filter, calls a function to calculate Error
     - ```ParticleFilter.cpp``` : describes particle filter functions
     - ```ParticleFilter.h``` : header file for .cpp
     - ```map.h``` : information about landmark position
@@ -392,14 +391,14 @@ string ParticleFilter::getSenseCoord(Particle best, string coord) {
 ```
 
 
-# Results
+## 4. Results
 
 <img src="./images/result.png" width="700">
 
 
-# Conclusion & Discussion
+## 5. Discussion
 
-### 1. About total flow of self-driving car
+#### 1) About total flow of self-driving car
 
 What do we need to make self driving car?
 
