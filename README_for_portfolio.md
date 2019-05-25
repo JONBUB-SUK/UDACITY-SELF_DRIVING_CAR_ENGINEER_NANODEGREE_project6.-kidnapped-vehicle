@@ -3,21 +3,19 @@
 
 ## 1. Abstraction
 
-The object of this project is to localize car's position
+The purpose of this project is to localize car's position
 
-Before project (Kalman filter) is to detect object's using sensor fusion, and this project is detect my position exactly
+Before project (Kalman filter) is to detect objects using sensor fusion, and this project is detect my position exactly by also using sensor fusion
 
-by also using sensor fusion
+Of coulse it is possible to localize my position by using GPS, but its range accuracy is more than 1m
 
-Of coulse it is possible localize my position by using GPS, but its range accuracy is more than 1m
-
-We need at least 10cm accuracy so we need more than just GPS
+We need at least 10cm accuracy to drive autonomously, so we need more than just GPS
 
 In this project, I will use GPS for initializing first car's position
 
-after than use sensor fusion for detecting landmarks that already know its position
+After than use sensor fusion for detecting landmarks that already know its position
 
-and finally find car's exact position by using particle filter
+And finally find car's exact position by using particle filter
 
 
 
