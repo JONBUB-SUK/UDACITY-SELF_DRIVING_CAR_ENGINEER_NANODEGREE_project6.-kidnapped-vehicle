@@ -28,25 +28,32 @@ and finally find car's exact position by using particle filter
 
 ① Assumption for bicycle model
 
-② (x,y,math.theta) 
+② (x,y,theta) prediction
 
 
 #### 2) Particle Filters
 
-<img src="./images/particle_filter_1.jpg" width="500">
-<img src="./images/particle_filter_2.jpg" width="500">
+① About landmarks
+
+② Role of weights
+
+③ Resampling
 
 
 #### 3) Implementation of a Particle Filter
 
-<img src="./images/implementation_of_a_particle_filter_1.jpg" width="500">
-<img src="./images/implementation_of_a_particle_filter_2.jpg" width="500">
-<img src="./images/implementation_of_a_particle_filter_3.jpg" width="500">
-<img src="./images/implementation_of_a_particle_filter_4.jpg" width="500">
+① Algorithm steps : Initiation → Prediction → Update → Resampling
+
+② About initiation : Meaning of number of particles, Initiation position
+
+③ About prediction : Motion models
+
+④ About update step : Data Association, Update weights, Transformations
 
 ## 3. Details
 
-# Content Of This Repo
+#### 1) Content Of This Repo
+
 - ```src``` a directory with the project code
     - ```main.cpp``` : reads in data, calls a function to run the Particle filter, calls a function to calculate Error
     - ```ParticleFilter.cpp``` : describes particle filter functions
@@ -55,9 +62,8 @@ and finally find car's exact position by using particle filter
     - ```json.hpp``` : for using json in main.cpp
     - ```helper_functions.h``` : functions used to in ParticleFilter.cpp
 
+#### 2) Code
 
-
-# Explanation Of Each Code File
 1. ParticleFilter.cpp
 
 ```c++
